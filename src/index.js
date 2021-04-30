@@ -67,15 +67,15 @@ import ReactDOM from "react-dom";
 
     class App extends React.Component { 
         constructor(props){ 
-          super(props) ;
+          super(props);
               
           // Set initial state 
-          this.state = {fruit : 
-                "Apple"} ;
-              
+          this.state = {fruit: 
+                "Apple"};}
+               
           // Binding this keyword 
           //this.updateState = this.updateState.bind(this) 
-        } 
+        
           
         // updateState(){ 
         //   // Changing state 
@@ -91,17 +91,72 @@ import ReactDOM from "react-dom";
                     this.setState=({fruit:"Grapes"})
                 },1000)
             }
+            // shouldComponentUpdate=()=>{
+            //     this.setState({fruit:"Lemon"});
+            // }
+            getSnapshotBeforeUdate(prevProps,prevState){
+                document.getElementById("div1").innerHTML="Initial"+ prevProps.fruit;
+            }
+            componentDidUpdate(){
+                document.getElementById("div1").innerHTML="Initial"+ this.state.fruit;
+            }
         render(){ 
           return (  <div> 
             <h2>This is a:</h2>   
-            <p>{this.state.fruit}</p>
-           
+            <p id="div1">{this.state.fruit}</p>
+            <p id= "div2"></p>
              {/* Set click handler */} 
              {/* <button onClick={this.updateState}> 
                Click me!
              </button>  */}
            </div> 
-         ) 
+         ); 
        } 
-     } 
-    ReactDOM.render(<App  favcol="Litchi"/>, document.getElementById('root'));
+    }
+    ReactDOM.render(<App />, document.getElementById('root'));
+
+    import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+ 
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {show: true};
+  }
+delHeader = () = > {
+this.setState ({show: false});
+}  
+render() {
+    let myheader;
+    if (this.state.show){
+        myheader = <Child />;   // Unmount the header
+    };
+    return (
+      <div>
+          {myheader}
+      //<h1>My Favorite book is {this.state.favbook}</h1>
+      <button type="button" onClick={this.delHeader}>Delete Header</button>
+      </div>
+    );
+  }
+}
+class Child extends React.Component{
+componentDidUnmount(){
+    alert("It will be unmounted");
+}
+render({
+    return(
+        <h1>Fav Book! </h1>
+    );
+}
+}
+ReactDOM.render(<MyApp />, document.getElementById('root'));
+ 
+//componentWillUnmount()
+//Here, the component is removed from the DOM
+ 
+//Example
+// 1. Header/Footer/Text is displayed
+// 2. We have a button to clear the data
+// 3. As soon as the button is clicked, ALERT IS GENERATED
+// 4. Once OK is selected, data will be unmounted/cleared!
