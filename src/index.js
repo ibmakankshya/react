@@ -162,40 +162,43 @@
 // // 4. Once OK is selected, data will be unmounted/cleared!
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Ap from './Ap';
  
-class Container extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {show: true};
-  }
-  delHeader = () => {
-    this.setState({show: false});
-  }
-  render() {
-    let myheader;
-    if (this.state.show) {
-      myheader = <Child />;
-    };
-    return (
-      <div>
-      {myheader}
-      <button type="button" onClick={this.delHeader}>Delete Header</button>
-      </div>
-    );
-  }
-}
+
+//using state 
+// class Container extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {show: true};
+//   }
+//   delHeader = () => {
+//     this.setState({show: false});
+//   }
+//   render() {
+//     let myheader;
+//     if (this.state.show) {
+//       myheader = <Child />;
+//     };
+//     return (
+//       <div>
+//       {myheader}
+//       <button type="button" onClick={this.delHeader}>Delete Header</button>
+//       </div>
+//     );
+//   }
+// }
  
-//////////////////////////////// ALERT
+// //////////////////////////////// ALERT
  
-class Child extends React.Component {
-  componentWillUnmount() {
-    alert("The Header will be unmounted.");
-  }
-  render() {
-    return (
-      <h1>Hello World!</h1>
-    );
-  }
-}
+// class Child extends React.Component {
+//   componentWillUnmount() {
+//     alert("The Header will be unmounted.");
+//   }
+//   render() {
+//     return (
+//       <h1>Hello World!</h1>
+//     );
+//   }
+// }
  
-ReactDOM.render(<Container />, document.getElementById('root'));
+ReactDOM.render(<Ap />, document.getElementById('root'));
