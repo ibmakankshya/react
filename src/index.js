@@ -166,39 +166,63 @@ import Ap from './Ap';
  
 
 //using state 
-// class Container extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {show: true};
-//   }
-//   delHeader = () => {
-//     this.setState({show: false});
-//   }
-//   render() {
-//     let myheader;
-//     if (this.state.show) {
-//       myheader = <Child />;
-//     };
-//     return (
-//       <div>
-//       {myheader}
-//       <button type="button" onClick={this.delHeader}>Delete Header</button>
-//       </div>
-//     );
-//   }
-// }
+class Container extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({show: false, due: false
+    });
+  }
+  showheader = () => {
+    this.setState({show: true});
+  }
+ showcheck=()=>{
+    this.setState({due: true});
+ }
+  render() {
+    //let myheader;
+    let showbutton;
+    if(this.state.show && this.state.due){
+        showbutton="Proceed"
+    }
+    else{
+        showbutton="Cant proceed";
+        
+
+    }
+    // if(!this.state.show){
+    //     showbutton="Show header";
+    // }
+    // else
+    // {
+    //     showbutton="Hide header"
+    // }
+    // if (this.state.show) {
+    //   myheader = <Child />;
+    // }
+    // else{
+    //     myheader=<div></div>;
+    // };
+    return (
+      
+      <div>
+            <Child />
+    <input type="text" onChange={this.showheader}></input><br></br>
+     <input type="checkbox" onClick={this.showcheck}></input>Accept terms and conditions
+<br></br>    <button type="button" >{showbutton}</button>
+      </div>
+    );
+  }
+}
  
 // //////////////////////////////// ALERT
  
-// class Child extends React.Component {
-//   componentWillUnmount() {
-//     alert("The Header will be unmounted.");
-//   }
-//   render() {
-//     return (
-//       <h1>Hello World!</h1>
-//     );
-//   }
-// }
+class Child extends React.Component {
+  
+  render() {
+    return (
+      <h1>Enter Details</h1>
+    );
+  }
+}
  
-ReactDOM.render(<Ap />, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));
